@@ -16,6 +16,11 @@ plt.style.use('ggplot')
 dataTest='drugsComTest_raw.tsv'
 dataTrain='drugsComTrain_raw.tsv'
 
+testData=0;
+trainData=1
+allData=2
+
+
 
 
 def read_Data():
@@ -27,7 +32,9 @@ def read_Data():
     drugsData.columns = ['ID','drugName','condition','review','rating','date','usefulCount']
     drugsData['date'] = pd.to_datetime(drugsData['date'])
 
-    return drugsData
+    result=[df1,df2,drugsData]
+
+    return result
 
 
 
@@ -39,7 +46,6 @@ def clean_Data(drugsData):
     drugsDataCleaned=drugsData[~drugsData.condition.str.contains(" users found this comment helpful.",na=False)]
 
     return drugsDataCleaned
-
 
 
 
@@ -195,16 +201,9 @@ def descriptiveAnalisis(data):
 def main():
     data=read_Data()
 
-    dataCleaned=clean_Data(data)
 
-    descriptiveAnalisis(data)
+    dataCleaned=clean_Data(data[allData])
 
-
-
-
-
-
-
-
+    descriptiveAnalisis(dataCleaned)
 
 main()
