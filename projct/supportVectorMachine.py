@@ -65,7 +65,7 @@ def svnModel():
 
     tfidf = TfidfVectorizer(stop_words='english',ngram_range=(1,2))
     features = tfidf.fit_transform(allData.ReviewWithoutStopwords)
-    labels   = allData.vaderReviweScoreLabel
+    labels   = allData.ratingSentiment
 
     print(features.shape)
 
