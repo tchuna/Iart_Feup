@@ -50,7 +50,7 @@ dataTrain='data/trainDataprocessed.csv.gz'
 
 
 
-def svnModel():
+def neural_network():
 
 
     allData=pd.read_csv(dataAll)
@@ -104,7 +104,7 @@ def svnModel():
 
 
 def main():
-    svnModel()
+    neural_network()
 
 
 main()
