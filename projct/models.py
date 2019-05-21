@@ -28,11 +28,8 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 from mlxtend.plotting import plot_confusion_matrix
 
-import vaderSentiment
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-import nltk
-nltk.download(['punkt','stopwords'])
+
 
 from tensorflow import keras
 from datetime import datetime
@@ -41,25 +38,12 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.utils import shuffle
 from nltk.corpus import stopwords
 
-
 import matplotlib.pyplot as plt
 import xlrd as xl
 
-
-
-
-analyzer = SentimentIntensityAnalyzer()
-stopwords = stopwords.words('english')
-
-
-
 plt.style.use('ggplot')
 
-
-
-dataTrain='trainDataprocessed.csv'
-dataTest='testDataprocessed.csv'
-dataAll='AllDataprocessed.csv'
+dataAll='allDataprocessed.csv'
 
 
 
@@ -71,7 +55,7 @@ def sentimentalModels():
 
 
     allData['review'] =allData['review'].str.replace("&#039;", "'")
-    allData['ReviewWithoutStopwords'] =allData['review'].str.replace("&#039;", "'")
+    allData['ReviewWithoutStopwords'] =allData['ReviewWithoutStopwords'].str.replace("&#039;", "'")
 
 
     allData = allData[['Id','drugName','review','ReviewWithoutStopwords','rating','ratingSentiment','ratingSentimentLabel',
