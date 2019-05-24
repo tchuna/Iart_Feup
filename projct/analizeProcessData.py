@@ -14,10 +14,9 @@ from sklearn.preprocessing import Normalizer
 from sklearn.metrics import accuracy_score
 from sklearn.neural_network import MLPClassifier
 
+from nltk.stem import LancasterStemmer
 
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import LinearSVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import cross_val_score
@@ -48,7 +47,9 @@ import xlrd as xl
 
 
 analyzer = SentimentIntensityAnalyzer()
+
 stopwords = stopwords.words('english')
+nltk..download()
 
 
 
@@ -90,6 +91,8 @@ def read_Data():
 
 
 def clean_Data(data):
+    lancaster=LancasterStemmer()
+
 
     numCorrupD=len(data[trainData_index][data[trainData_index].condition.str.contains(" users found this comment helpful.",na=False)])
     print("Corrupted Reviews in Train Data:",numCorrupD,"\n")
@@ -285,6 +288,7 @@ def sematicAnalize(dataTo_Process):
     #clean review //ReviewWithoutStopwords
     allData[trainData_index]['ReviewWithoutStopwords'] = allData[trainData_index]['review'].apply(lambda x: ' '.join([item for item in x.split() if item not in stopwords]))     # remove stopwords from review
     allData[testData_index]['ReviewWithoutStopwords'] = allData[testData_index]['review'].apply(lambda x: ' '.join([item for item in x.split() if item not in stopwords]))     # remove stopwords from review
+    
 
     #score review whit vanderSentiment
     allData[trainData_index]['reviewScore'] = allData[trainData_index]['ReviewWithoutStopwords'].apply(lambda x: analyzer.polarity_scores(x)['compound'])
