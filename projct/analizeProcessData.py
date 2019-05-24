@@ -49,7 +49,7 @@ import xlrd as xl
 analyzer = SentimentIntensityAnalyzer()
 
 stopwords = stopwords.words('english')
-nltk..download()
+nltk.download()
 
 
 
